@@ -3,7 +3,7 @@
 function getNewSqaure (index) {
     const newSquare = document.createElement('div');
     newSquare.classList.add('square', 'd-flex');
-    newSquare.innerHTML = `<span class="m-auto"> ${index} </span>`;
+    // newSquare.innerHTML = `<span class="m-auto"> ${index} </span>`;
     return newSquare;
 }
 
@@ -48,25 +48,24 @@ button.addEventListener('click', function() {
         let numCreated = getRandomUniqueNumber (bombs, 1, 100);
         bombs.push(numCreated);
     }
-    console.log(bombs);
+    // console.log(bombs);
 
     for (let i = 1; i <= 100; i++) {
         const newSquare = getNewSqaure(i);
 
         newSquare.addEventListener('click', function(){
-            console.log('Hai cliccato la casella ' + i);
+            // console.log('Hai cliccato la casella ' + i);
             if ( bombs.includes(i) ) {
-                newSquare.classList.toggle('bomb');
                 alert(`GAME OVER! Hai totalizzato ${score} punti.`);
-                gridContainer.innerHTML = '';
+                newSquare.classList.toggle('bomb');
             }
             newSquare.classList.toggle('active');
             score += 1;
             
             if ( score === (100 - 16) ) {
                 alert(`CONGRATULATIONS!! YOU WIN!`);
-                gridContainer.innerHTML = '';
             }
+            
         }, {once : true})
 
         gridContainer.appendChild(newSquare);
