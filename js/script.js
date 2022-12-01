@@ -1,6 +1,6 @@
 
 // Funzione per creare l'elemento
-function getNewSqaure (index) {
+function getNewSquare (index) {
     const newSquare = document.createElement('div');
     newSquare.classList.add('square', 'd-flex');
     // newSquare.innerHTML = `<span class="m-auto"> ${index} </span>`;
@@ -40,6 +40,8 @@ button.addEventListener('click', function() {
 
     let score = 0;
 
+    let game = true;
+
     const gridContainer = document.querySelector('div.grid');
 
     gridContainer.innerHTML = '';
@@ -51,21 +53,27 @@ button.addEventListener('click', function() {
     // console.log(bombs);
 
     for (let i = 1; i <= 100; i++) {
-        const newSquare = getNewSqaure(i);
+        const newSquare = getNewSquare(i);
 
         newSquare.addEventListener('click', function(){
-            // console.log('Hai cliccato la casella ' + i);
+            
+            if (!game) {
+                return
+            };
+
             if ( bombs.includes(i) ) {
                 alert(`GAME OVER! Hai totalizzato ${score} punti.`);
                 newSquare.classList.toggle('bomb');
+                game = false;
             }
             newSquare.classList.toggle('active');
             score += 1;
             
             if ( score === (100 - 16) ) {
                 alert(`CONGRATULATIONS!! YOU WIN!`);
+                game = false;
             }
-            
+
         }, {once : true})
 
         gridContainer.appendChild(newSquare);
