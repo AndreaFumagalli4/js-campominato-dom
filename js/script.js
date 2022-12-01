@@ -28,3 +28,34 @@ button.addEventListener('click', function(){
 // 1. - Generazione di 16 numeri casuali all'interno dei 100 numeri creati per le celle.
 // 2. - Quando l'utente clicca su uno di questi 16 numeri ha perso la partita (al click la cella diventerà rossa e all'inizio voglio che si crei un alert).
 // SE il numero generato dall'utente === all'indice i ALLORA ==> vedi 2.
+
+const bombs = [];
+
+function getRandomNumber (numMin, numMax) {
+    if (numMin === numMax) {
+        return numMax;
+    }
+
+    return Math.floor ( Math.random() * (numMax - numMin + 1) + numMin );
+}
+
+function getRandomUniqueNumber (blacklist, min, max) {
+    let isValid = false;
+    let randomNum;
+
+    while ( isValid === false) {
+        randomNum = getRandomNumber (min, max);
+
+        if ( ! blacklist.includes(randomNum) ) {
+            isValid = true;
+        }
+    }
+    return randomNum;
+}
+
+while (bombs.length < 16) {
+    let numCreated = getRandomUniqueNumber (bombs, 1, 100);
+    bombs.push(numCreated);
+}
+
+console.log(bombs);
