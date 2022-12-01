@@ -63,9 +63,12 @@ button.addEventListener('click', function() {
             newSquare.classList.toggle('active');
             score += 1;
             
+            if ( score === (100 - 16) ) {
+                alert(`CONGRATULATIONS!! YOU WIN!`);
+                gridContainer.innerHTML = '';
+            }
         }, {once : true})
 
         gridContainer.appendChild(newSquare);
     }
-    
 })
