@@ -57,7 +57,8 @@ button.addEventListener('click', function() {
             console.log('Hai cliccato la casella ' + i);
             if ( bombs.includes(i) ) {
                 newSquare.classList.toggle('bomb');
-                alert(`HAI PERSO! Hai totalizzato ${score} punti.`);
+                alert(`GAME OVER! Hai totalizzato ${score} punti.`);
+                gridContainer.innerHTML = '';
             }
             newSquare.classList.toggle('active');
             score += 1;
