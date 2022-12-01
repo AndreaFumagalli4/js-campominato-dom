@@ -1,0 +1,32 @@
+body{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+a#button{
+    padding: .3rem 1.5rem;
+    border-radius: 20px;
+    background-color: #e9e9ed;
+    margin-top: 1rem;
+    text-decoration: none;
+    color: black;
+}
+
+main{
+    background-color: #7fffd4;
+}
+
+div.grid{
+    width: 650px;
+    height: 650px;
+}
+
+div.square{
+    width: calc(100% / 10);
+    height: calc(100% / 10);
+    border: 1px solid black;
+    cursor: crosshair;
+}
+
+div.square.active{
+    background-color: cyan;
+}
