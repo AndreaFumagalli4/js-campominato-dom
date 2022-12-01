@@ -31,11 +31,14 @@ function getRandomUniqueNumber (blacklist, min, max) {
     return randomNum;
 }
 
-const bombs = [];
 
 const button = document.getElementById('button');
 
 button.addEventListener('click', function() {
+
+    const bombs = [];
+
+    let score = 0;
 
     const gridContainer = document.querySelector('div.grid');
 
@@ -52,9 +55,16 @@ button.addEventListener('click', function() {
 
         newSquare.addEventListener('click', function(){
             console.log('Hai cliccato la casella ' + i);
+            if ( bombs.includes(i) ) {
+                newSquare.classList.toggle('bomb');
+                alert(`HAI PERSO! Hai totalizzato ${score} punti.`);
+            }
             newSquare.classList.toggle('active');
+            score += 1;
+            
         }, {once : true})
 
         gridContainer.appendChild(newSquare);
     }
+    
 })

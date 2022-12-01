@@ -30,3 +30,7 @@ div.square{
 div.square.active{
     background-color: cyan;
 }
+
+div.square.bomb{
+    background-color: red;
+}
