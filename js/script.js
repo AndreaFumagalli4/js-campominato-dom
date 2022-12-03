@@ -44,6 +44,8 @@ button.addEventListener('click', function() {
 
     const gridContainer = document.querySelector('div.grid');
 
+    const scoreContainer = document.querySelector('div.score');
+
     gridContainer.innerHTML = '';
 
     while (bombs.length < 16) {
@@ -68,7 +70,8 @@ button.addEventListener('click', function() {
             }
             newSquare.classList.toggle('active');
             score += 1;
-            
+            scoreContainer.innerHTML = `Il tuo attuale punteggio è: ${score}`;
+                        
             if ( score === (100 - 16) ) {
                 alert(`CONGRATULATIONS!! YOU WIN!`);
                 game = false;
