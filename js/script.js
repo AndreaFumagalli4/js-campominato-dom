@@ -31,6 +31,10 @@ function getRandomUniqueNumber (blacklist, min, max) {
     return randomNum;
 }
 
+function writeIntoElementById (elementId, content) {
+    document.getElementById(elementId).innerHTML = content;
+}
+
 
 const button = document.getElementById('button');
 
@@ -38,13 +42,13 @@ button.addEventListener('click', function() {
 
     const bombs = [];
 
+    let isGameOver = false;
+
     let score = 0;
 
-    let game = true;
+    writeIntoElementById ('score', 'Hai iniziato una nuova partita, clicca su una cella per fare un punto');
 
     const gridContainer = document.querySelector('div.grid');
-
-    const scoreContainer = document.querySelector('div.score');
 
     gridContainer.innerHTML = '';
 
@@ -59,24 +63,23 @@ button.addEventListener('click', function() {
 
         newSquare.addEventListener('click', function(){
             
-            if (!game) {
-                return
-            };
-
-            if ( bombs.includes(i) ) {
-                alert(`GAME OVER! Hai totalizzato ${score} punti.`);
-                newSquare.classList.toggle('bomb');
-                game = false;
+            if(!isGameOver){
+                if (bombs.includes(i)){
+                    newSquare.classList.toggle('bomb');
+                    isGameOver = true;
+                    writeIntoElementById ('score', 'BOOM! Hai perso; il tuo punteggio è: ' + score);
+                } else {
+                    newSquare.classList.toggle('active');
+                    score++;
+                    writeIntoElementById ('score', 'Il tuo punteggio è: ' + score);
+                    if ( score === (100-16) ) {
+                        writeIntoElementById ('score', 'HAI VINTO!! Il tuo punteggio è: ' + score);
+                        isGameOver = true;
+                    }
+                }
+            } else {
+                console.log('Non puoi cliccare su altre celle, la partita è terminata');
             }
-            newSquare.classList.toggle('active');
-            score += 1;
-            scoreContainer.innerHTML = `Il tuo attuale punteggio è: ${score}`;
-                        
-            if ( score === (100 - 16) ) {
-                alert(`CONGRATULATIONS!! YOU WIN!`);
-                game = false;
-            }
-
         }, {once : true})
 
         gridContainer.appendChild(newSquare);
